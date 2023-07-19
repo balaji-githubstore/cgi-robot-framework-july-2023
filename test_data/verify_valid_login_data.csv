@@ -1,0 +1,3 @@
+${test_case_name};${username};${password};${langauge};${expected_title}
+TC1;physician;physician;English (Indian);OpenEMR
+TC2;admin;pass;English (Indian);OpenEMR

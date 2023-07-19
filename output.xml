@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1 (Python 3.11.4 on win32)" generated="20230719 16:47:25.270" rpa="false" schemaversion="4">
+<suite id="s1" name="Verify Invalid Login Suite" source="C:\Mine\Company\CGI Python Robot July 2023\OpenEMRRobotFramework\tests\1__login_suite\2__verify_invalid_login_suite.robot">
+<test id="s1-t1" name="TC2" line="17">
+<kw name="Launch Browser And Navigate To URL" library="CommonFunctionalities" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=${BROWSER_NAME}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230719 16:47:25.529" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<msg timestamp="20230719 16:47:25.535" level="INFO">Executing: C:\Program Files\Python311\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --output json</msg>
+<status status="PASS" starttime="20230719 16:47:25.529" endtime="20230719 16:47:27.331"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230719 16:47:27.331" endtime="20230719 16:47:27.462"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>20s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20230719 16:47:27.463" endtime="20230719 16:47:27.466"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>url=${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20230719 16:47:27.467" level="INFO">Opening url 'https://demo.openemr.io/b/openemr'</msg>
+<status status="PASS" starttime="20230719 16:47:27.466" endtime="20230719 16:47:32.038"/>
+</kw>
+<kw name="Set Screenshot Directory" library="SeleniumLibrary">
+<arg>${EXECDIR}${/}log${/}screenshots</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" starttime="20230719 16:47:32.039" endtime="20230719 16:47:32.040"/>
+</kw>
+<status status="PASS" starttime="20230719 16:47:25.528" endtime="20230719 16:47:32.041"/>
+</kw>
+<kw name="Verify Invalid Login Template" library="LoginTemplate">
+<arg>peter</arg>
+<arg>peter123</arg>
+<arg>Dutch</arg>
+<arg>Invalid username or password</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=authUser</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230719 16:47:32.043" level="INFO">Typing text 'peter' into text field 'id=authUser'.</msg>
+<status status="PASS" starttime="20230719 16:47:32.042" endtime="20230719 16:47:32.186"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>css=#clearPass</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20230719 16:47:32.187" level="INFO">Typing password into text field 'css=#clearPass'.</msg>
+<msg timestamp="20230719 16:47:32.278" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20230719 16:47:32.464" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20230719 16:47:32.187" endtime="20230719 16:47:32.464"/>
+</kw>
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<arg>name=languageChoice</arg>
+<arg>${langauge}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<msg timestamp="20230719 16:47:32.465" level="INFO">Selecting options from selection list 'name=languageChoice' by label Dutch.</msg>
+<status status="PASS" starttime="20230719 16:47:32.464" endtime="20230719 16:47:32.578"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>id=login-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230719 16:47:32.578" level="INFO">Clicking element 'id=login-button'.</msg>
+<status status="PASS" starttime="20230719 16:47:32.578" endtime="20230719 16:47:34.598"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath=//p[contains(text(),'Invalid')]</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20230719 16:47:34.602" level="INFO">Verifying element 'xpath=//p[contains(text(),'Invalid')]' contains exact text 'Invalid username or password'.</msg>
+<status status="PASS" starttime="20230719 16:47:34.599" endtime="20230719 16:47:34.693"/>
+</kw>
+<status status="PASS" starttime="20230719 16:47:32.042" endtime="20230719 16:47:34.693"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230719 16:47:34.695" endtime="20230719 16:47:36.868"/>
+</kw>
+<status status="PASS" starttime="20230719 16:47:25.528" endtime="20230719 16:47:36.870"/>
+</test>
+<doc>This suite file verify the invalid users are not allowed
+to access the portal</doc>
+<status status="PASS" starttime="20230719 16:47:25.271" endtime="20230719 16:47:36.873"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Verify Invalid Login Suite">Verify Invalid Login Suite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
