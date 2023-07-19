@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1 (Python 3.11.4 on win32)" generated="20230717 16:43:37.579" rpa="false" schemaversion="4">
+<suite id="s1" name="Demo1 Suite" source="C:\Mine\Company\CGI Python Robot July 2023\AutomationProject\robot_suite\demo1_suite.robot">
+<test id="s1-t1" name="TC1 Print My Name" line="2">
+<kw name="Log To Console" library="BuiltIn">
+<arg>Balaji</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230717 16:43:37.606" endtime="20230717 16:43:37.606"/>
+</kw>
+<status status="PASS" starttime="20230717 16:43:37.605" endtime="20230717 16:43:37.607"/>
+</test>
+<test id="s1-t2" name="TC2 Print My Name" line="5">
+<kw name="Log To Console" library="BuiltIn">
+<arg>message=Welcome to Robot Framework Session</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230717 16:43:37.610" endtime="20230717 16:43:37.610"/>
+</kw>
+<status status="PASS" starttime="20230717 16:43:37.609" endtime="20230717 16:43:37.611"/>
+</test>
+<test id="s1-t3" name="TC3" line="8">
+<kw name="Set Variable" library="BuiltIn">
+<var>${my_name}</var>
+<arg>Balaji Dinakaran</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230717 16:43:37.613" level="INFO">${my_name} = Balaji Dinakaran</msg>
+<status status="PASS" starttime="20230717 16:43:37.612" endtime="20230717 16:43:37.613"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${my_name}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230717 16:43:37.613" endtime="20230717 16:43:37.614"/>
+</kw>
+<status status="PASS" starttime="20230717 16:43:37.612" endtime="20230717 16:43:37.614"/>
+</test>
+<test id="s1-t4" name="TC4" line="12">
+<kw name="Set Variable" library="BuiltIn">
+<var>${num1}</var>
+<arg>10</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230717 16:43:37.616" level="INFO">${num1} = 10</msg>
+<status status="PASS" starttime="20230717 16:43:37.616" endtime="20230717 16:43:37.616"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${num2}</var>
+<arg>20</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230717 16:43:37.616" level="INFO">${num2} = 20</msg>
+<status status="PASS" starttime="20230717 16:43:37.616" endtime="20230717 16:43:37.616"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${res}</var>
+<arg>${num1}+${num2}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230717 16:43:37.617" level="INFO">${res} = 30</msg>
+<status status="PASS" starttime="20230717 16:43:37.617" endtime="20230717 16:43:37.617"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${res}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230717 16:43:37.618" endtime="20230717 16:43:37.618"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${res}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230717 16:43:37.619" level="INFO">30</msg>
+<status status="PASS" starttime="20230717 16:43:37.619" endtime="20230717 16:43:37.619"/>
+</kw>
+<status status="PASS" starttime="20230717 16:43:37.615" endtime="20230717 16:43:37.620"/>
+</test>
+<test id="s1-t5" name="TC5" line="20">
+<kw name="Get Time" library="BuiltIn">
+<var>${time}</var>
+<doc>Returns the given time in the requested format.</doc>
+<msg timestamp="20230717 16:43:37.622" level="INFO">${time} = 2023-07-17 16:43:37</msg>
+<status status="PASS" starttime="20230717 16:43:37.621" endtime="20230717 16:43:37.622"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${time}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230717 16:43:37.622" endtime="20230717 16:43:37.622"/>
+</kw>
+<status status="PASS" starttime="20230717 16:43:37.621" endtime="20230717 16:43:37.623"/>
+</test>
+<status status="PASS" starttime="20230717 16:43:37.581" endtime="20230717 16:43:37.624"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="5" fail="0" skip="0" id="s1" name="Demo1 Suite">Demo1 Suite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
