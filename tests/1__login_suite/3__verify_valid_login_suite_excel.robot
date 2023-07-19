@@ -6,7 +6,6 @@ Library     DataDriver        file=../../test_data/OpenEMRData.xlsx     sheet_na
 Resource    ../../resource/base/CommonFunctionalities.resource
 #Resource    ../../resource/templates/LoginTemplate.resource
 
-
 Test Setup      Launch Browser And Navigate To URL
 Test Teardown   Close Browser
 
