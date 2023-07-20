@@ -43,3 +43,12 @@ TC4 JS & WebELement
     Execute Javascript  arguments[0].value='10/12/2000'     ARGUMENTS       ${ele}
     Sleep    5s
     [Teardown]  Close Browser
+
+TC5
+    Open Browser    browser=chrome  alias=b1
+    Open Browser    browser=edge    alias=b2
+    Go To    url=http://facebook.com    
+    Switch Browser    b1
+    Go To    url=http://google.com
+    Close All Browsers
+    

@@ -1,54 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1 (Python 3.11.4 on win32)" generated="20230720 14:48:06.209" rpa="false" schemaversion="4">
-<suite id="s1" name="Demo1 Suite" source="C:\Mine\Company\CGI Python Robot July 2023\AutomationProject\db_suite\demo1_suite.robot">
-<kw name="Connect To Database" library="DatabaseLibrary" type="SETUP">
-<arg>dbapiModuleName=pymysql</arg>
-<arg>dbName=dbfree_db</arg>
-<arg>dbUsername=dbfree_db</arg>
-<arg>dbPassword=12345678</arg>
-<arg>dbHost=db4free.net</arg>
-<arg>dbPort=3306</arg>
-<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
-connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
-<msg timestamp="20230720 14:48:06.330" level="INFO">Connecting using : pymysql.connect(db=dbfree_db, user=dbfree_db, passwd=***, host=db4free.net, port=3306, charset=None) </msg>
-<status status="PASS" starttime="20230720 14:48:06.258" endtime="20230720 14:48:07.283"/>
+<robot generator="Robot 6.1 (Python 3.11.4 on win32)" generated="20230720 16:08:25.023" rpa="false" schemaversion="4">
+<suite id="s1" name="Demo1 Suite" source="C:\Mine\Company\CGI Python Robot July 2023\AutomationProject\api_suite\demo1_suite.robot">
+<kw name="Create Session" library="RequestsLibrary" type="SETUP">
+<arg>alias=petshop</arg>
+<arg>url=https://petstore.swagger.io/v2</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230720 16:08:25.336" level="INFO">Creating Session using : alias=petshop, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230720 16:08:25.335" endtime="20230720 16:08:25.337"/>
 </kw>
-<test id="s1-t1" name="TC5" line="48">
-<kw name="Query" library="DatabaseLibrary">
-<var>${output}</var>
-<arg>select * from Products where Product_ID=1</arg>
-<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
-input `sansTran` to True to run command without an explicit transaction commit or rollback.
-Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
-<msg timestamp="20230720 14:48:07.288" level="INFO">Executing : Query  |  select * from Products where Product_ID=1 </msg>
-<msg timestamp="20230720 14:48:07.631" level="INFO">${output} = ((1, 'NEW WATCH', 'analog watch'),)</msg>
-<status status="PASS" starttime="20230720 14:48:07.287" endtime="20230720 14:48:07.631"/>
+<test id="s1-t1" name="TC1 Get Valid Pet By ID" line="8">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>alias=petshop</arg>
+<arg>url=/pet/10</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230720 16:08:26.208" level="INFO">GET Request : url=https://petstore.swagger.io/v2/pet/10 
+ path_url=/v2/pet/10 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230720 16:08:26.209" level="INFO">GET Response : url=https://petstore.swagger.io/v2/pet/10 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 20 Jul 2023 10:38:27 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"id":10,"category":{"id":10,"name":"sample string"},"name":"doggie","photoUrls":["sample 1","sample 2","sample 3"],"tags":[{"id":10,"name":"sample string"},{"id":10,"name":"sample string"}],"status":"available"} 
+ </msg>
+<msg timestamp="20230720 16:08:26.210" level="INFO">C:\Program Files\Python311\Lib\site-packages\urllib3\connectionpool.py:1056: InsecureRequestWarning: Unverified HTTPS request is being made to host 'petstore.swagger.io'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230720 16:08:26.211" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230720 16:08:25.337" endtime="20230720 16:08:26.211"/>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${output}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230720 14:48:07.633" endtime="20230720 14:48:07.635"/>
+<kw name="Log" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230720 16:08:26.215" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230720 16:08:26.212" endtime="20230720 16:08:26.215"/>
 </kw>
-<status status="PASS" starttime="20230720 14:48:07.285" endtime="20230720 14:48:07.636"/>
+<kw name="Log" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230720 16:08:26.220" level="INFO">200</msg>
+<status status="PASS" starttime="20230720 16:08:26.217" endtime="20230720 16:08:26.220"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230720 16:08:26.225" level="INFO">{'id': 10, 'category': {'id': 10, 'name': 'sample string'}, 'name': 'doggie', 'photoUrls': ['sample 1', 'sample 2', 'sample 3'], 'tags': [{'id': 10, 'name': 'sample string'}, {'id': 10, 'name': 'sample string'}], 'status': 'available'}</msg>
+<status status="PASS" starttime="20230720 16:08:26.221" endtime="20230720 16:08:26.226"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.json()}[id]</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230720 16:08:26.230" level="INFO">10</msg>
+<status status="PASS" starttime="20230720 16:08:26.227" endtime="20230720 16:08:26.231"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${response.json()}[id]</arg>
+<arg>10</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20230720 16:08:26.236" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230720 16:08:26.232" endtime="20230720 16:08:26.237"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()}[name]</arg>
+<arg>doggie</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230720 16:08:26.238" endtime="20230720 16:08:26.242"/>
+</kw>
+<status status="PASS" starttime="20230720 16:08:25.337" endtime="20230720 16:08:26.243"/>
 </test>
-<kw name="Disconnect From Database" library="DatabaseLibrary" type="TEARDOWN">
-<doc>Disconnects from the database.
-By default it's not an error if there was no open database connection -
-suitable for usage as a teardown.
-However you can enforce it using the `error_if_no_connection` parameter.</doc>
-<msg timestamp="20230720 14:48:07.640" level="INFO">Executing : Disconnect From Database</msg>
-<status status="PASS" starttime="20230720 14:48:07.639" endtime="20230720 14:48:07.642"/>
+<test id="s1-t2" name="TC2 Get Invalid Pet ID" line="17">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>alias=petshop</arg>
+<arg>url=/pet/8666</arg>
+<arg>expected_status=404</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230720 16:08:26.463" level="INFO">GET Request : url=https://petstore.swagger.io/v2/pet/8666 
+ path_url=/v2/pet/8666 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230720 16:08:26.463" level="INFO">GET Response : url=https://petstore.swagger.io/v2/pet/8666 
+ status=404, reason=Not Found 
+ headers={'Date': 'Thu, 20 Jul 2023 10:38:27 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"code":1,"type":"error","message":"Pet not found"} 
+ </msg>
+<msg timestamp="20230720 16:08:26.464" level="INFO">C:\Program Files\Python311\Lib\site-packages\urllib3\connectionpool.py:1056: InsecureRequestWarning: Unverified HTTPS request is being made to host 'petstore.swagger.io'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20230720 16:08:26.464" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20230720 16:08:26.248" endtime="20230720 16:08:26.464"/>
 </kw>
-<status status="PASS" starttime="20230720 14:48:06.212" endtime="20230720 14:48:07.643"/>
+<kw name="Log" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230720 16:08:26.466" level="INFO">{'code': 1, 'type': 'error', 'message': 'Pet not found'}</msg>
+<status status="PASS" starttime="20230720 16:08:26.465" endtime="20230720 16:08:26.466"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230720 16:08:26.468" level="INFO">Pet not found</msg>
+<status status="PASS" starttime="20230720 16:08:26.467" endtime="20230720 16:08:26.468"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Pet not found</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230720 16:08:26.468" endtime="20230720 16:08:26.469"/>
+</kw>
+<status status="PASS" starttime="20230720 16:08:26.246" endtime="20230720 16:08:26.470"/>
+</test>
+<kw name="Delete All Sessions" library="RequestsLibrary" type="TEARDOWN">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20230720 16:08:26.473" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20230720 16:08:26.472" endtime="20230720 16:08:26.473"/>
+</kw>
+<status status="PASS" starttime="20230720 16:08:25.025" endtime="20230720 16:08:26.473"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Demo1 Suite">Demo1 Suite</stat>
+<stat pass="2" fail="0" skip="0" id="s1" name="Demo1 Suite">Demo1 Suite</stat>
 </suite>
 </statistics>
 <errors>
