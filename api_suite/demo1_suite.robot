@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation       Get request for path parameter and query parameter
 Library     RequestsLibrary
 
 Suite Setup     Create Session    alias=petshop    url=https://petstore.swagger.io/v2
@@ -19,3 +20,22 @@ TC2 Get Invalid Pet ID
     Log   ${response.json()}
     Log    ${response.json()}[message]
     Should Be Equal As Strings    ${response.json()}[message]    	Pet not found
+
+TC3 Find Pet By status
+    ${response}     GET On Session      alias=petshop   url=pet/findByStatus?status=sold
+    ...  expected_status=200
+    Log   ${response.json()}
+    Log   ${response.json()}[0]
+    Should Be Equal As Strings    ${response.json()}[0][status]    	sold    ignore_case=True
+    
+TC4 Find Pet By status
+    ${response}     GET On Session      alias=petshop   url=pet/findByStatus?status=sold
+    ...  expected_status=200
+    Log   ${response.json()}
+    ${len}      Get Length    ${response.json()}
+    Log    ${len}
+    FOR    ${i}    IN RANGE    0     ${len}
+        Log   ${response.json()}[${i}]
+        Should Be Equal As Strings    ${response.json()}[${i}][status]    	sold
+        ...  ignore_case=True
+    END
