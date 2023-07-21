@@ -8,4 +8,4 @@ class MainPage:
 
     @property
     def get_main_page_title(self):
-        return self.driver
+        return self.driver.title

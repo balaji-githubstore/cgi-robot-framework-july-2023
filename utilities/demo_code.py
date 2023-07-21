@@ -27,3 +27,8 @@ print(df.values.tolist())
 
 res=read_file.get_data_from_excel("../test_data/OpenEMRData.xlsx", "test_valid_login")
 print(res)
+
+
+df=pandas.read_csv(filepath_or_buffer="../test_data/verify_valid_login_data.csv",delimiter=";")
+print(df)
+print(df.values.tolist())

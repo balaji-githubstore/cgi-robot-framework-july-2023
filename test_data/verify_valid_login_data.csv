@@ -1,0 +1,3 @@
+username;password;langauge;expected_title
+physician;physician;English (Indian);OpenEMR
+admin;pass;English (Indian);OpenEMR

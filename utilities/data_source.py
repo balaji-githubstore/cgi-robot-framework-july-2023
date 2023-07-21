@@ -8,12 +8,14 @@ class DataSource:
         ["receptionist", "receptionist", "English (Indian)", "OpenEMR"]
     ]
 
-    valid_login_data_excel = read_file.get_data_from_excel("../test_data/OpenEMRData.xlsx",
-                                                           "test_valid_login")
+    # valid_login_data_excel = read_file.get_data_from_excel("../test_data/OpenEMRData.xlsx",
+    #                                                        "test_valid_login")
     invalid_login_data = [
         ["bala", "john123", "Dutch", "Invalid username or password"],
         ["dina", "john123", "Dutch", "Invalid username or password"]
     ]
 
-    invalid_login_data_excel=read_file.get_data_from_excel("../test_data/OpenEMRData.xlsx",
-                                                           "test_invalid_login")
+    # invalid_login_data_excel=read_file.get_data_from_excel("../test_data/OpenEMRData.xlsx",
+    #                                                        "test_invalid_login")
+    #
+    # valid_login_data_csv=read_file.get_data_from_csv("../test_data/verify_valid_login_data.csv")

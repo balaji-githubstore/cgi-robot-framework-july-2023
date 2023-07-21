@@ -1,3 +1,4 @@
+import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
@@ -6,6 +7,8 @@ from pages.login_page import LoginPage
 
 
 class TestPatient(WebDriverListner):
+    @pytest.mark.patient
+    @pytest.mark.smoke
     def test_add_valid_patient(self):
 
         login_page = LoginPage(self.driver)
